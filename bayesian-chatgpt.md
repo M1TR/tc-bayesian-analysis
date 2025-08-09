@@ -1,6 +1,6 @@
 # Discussion with chatgpt
 
-## If you want, I can walk you through a side-by-side mini-example of a Bayesian vs frequentist conclusion for a simulated small clinical trial — it makes the differences in interpretation very clear.
+# Walk me through a side-by-side mini-example of a Bayesian vs frequentist conclusion for a simulated small clinical trial — it will make the differences in interpretation very clear.
 
 ```python
 # Simulated mini clinical trial: Frequentist vs Bayesian comparison
@@ -168,7 +168,7 @@ If you want:
 * Or re-run the simulation with different sample sizes (e.g., 20 vs 200) to show how priors matter less as data grows.
   Which would you prefer?
 
-## walk me through the exact numbers from this run. show me the tables concerned.
+# Walk me through the exact numbers from this run. show me the tables concerned.
 
 ```python
 # Recreate the exact simulation (same seed) and display the tables again for walkthrough
@@ -368,7 +368,7 @@ If you want next steps, I can:
 * Show a sensitivity plot: P(treatment>control) as a function of prior strength (visual).
 * Or explain how a regulator might view the Bayesian 84% probability vs the frequentist non-significant p-value. Which would you like?
 
-## you said that "priors matter less as data grows" what do you mean by this?
+# "Priors matter less as data grows" -- what is meant by this?
 
 When I said **"priors matter less as data grows"**, I meant that in Bayesian statistics, the *influence* of your prior beliefs on the posterior distribution gets **diluted** as you collect more and more actual data.
 
@@ -423,7 +423,8 @@ $$
 
 If you want, I can **simulate the exact same trial but with different sample sizes** so you can see exactly how the posterior difference between strong and weak priors shrinks as $n$ grows. That makes this idea very concrete.
 
-## the challenges to bayesian analystics in clinical trials
+# The challenges to Bayesian Analystics in clinical trials
+> Q: the challenges to bayesian analystics in clinical trials:
 > 1. choosing the prior  
 > 2. computational complexity  
 > using an example of a clinical trial of a new diabetes drug where we are concerned with hgb1ac being our target variable, explain the above challenges with practical examples and numbers
@@ -550,9 +551,9 @@ Frequentist methods (like a mixed-effects model) can do similar estimation in **
 
 If you want, I can **simulate this diabetes trial with different priors** and show how the posterior estimate shifts — that would make the prior sensitivity issue really concrete. Would you like me to run that?
 
-## what if we pick non-informative priors
+# What if we pick non-informative priors?
 
-# Short answer
+### Short answer
 
 Using **non-informative priors** (sometimes called “flat” or “weakly-informative” priors) means you try to let the data speak for itself. That reduces subjectivity and is often more acceptable to regulators — but it doesn’t magically remove all problems. Non-informative priors still behave badly in small samples or complex/hierarchical models, and they are not unique (they depend on parameterization).
 
@@ -560,7 +561,7 @@ Below I explain what that means in practice and give concrete numbers for an HbA
 
 ---
 
-# What a non-informative prior looks like
+### What a non-informative prior looks like
 
 * For a normal mean $\mu$ with known variance, a common non-informative choice is a **flat prior** $p(\mu)\propto 1$.
 * For a proportion you might use Beta(1,1) (uniform).
@@ -568,7 +569,7 @@ Below I explain what that means in practice and give concrete numbers for an HbA
 
 ---
 
-# Concrete HbA1c example (numbers)
+### Concrete HbA1c example (numbers)
 
 Assume we measure **change in HbA1c** at 6 months in one arm (difference from baseline) and use the sample mean as the endpoint.
 
@@ -599,7 +600,7 @@ Contrast with small n:
 
 ---
 
-# Practical pitfalls of non-informative priors
+### Practical pitfalls of non-informative priors
 
 1. **They are not always truly “non-informative.”**
 
@@ -627,7 +628,7 @@ Contrast with small n:
 
 ---
 
-# What practitioners usually do instead
+### What practitioners usually do instead
 
 * Use **weakly-informative priors** (not completely flat): e.g., $\mu \sim \mathcal{N}(0,\,0.5^2)$ for an effect measured in percent HbA1c (this says effects > ±1.5% are unlikely).
 * Use **proper priors on variance** (e.g., half-Normal(0,0.2) or half-Student-t) to avoid numerical pathology.
@@ -635,7 +636,7 @@ Contrast with small n:
 
 ---
 
-# Rule-of-thumb takeaways
+### Rule-of-thumb takeaways
 
 * If you have **large, high-quality data**, non-informative priors are fine — posterior ≈ likelihood-based estimate.
 * If you have **small samples, hierarchical models, or multiple endpoints**, prefer weakly-informative priors for stability and better computational behaviour.
